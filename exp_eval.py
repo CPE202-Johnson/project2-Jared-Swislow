@@ -19,14 +19,14 @@ def postfix_eval(input_str):
                 a = myStack.pop()
 
                 #Casts the strings to an int or float, depending on what it is
-                if b.isnumeric():
+                try:
                     b = int(b)
-                else:
+                except:
                     b = float(b)
                 
-                if a.isnumeric():
+                try:
                     a = int(a)
-                else:
+                except:
                     a = float(a)
 
                 if token == "+":
