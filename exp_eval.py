@@ -50,13 +50,11 @@ def postfix_eval(input_str):
 def prefix_to_postfix(input_str):
     input_list = str.split(input_str)
     input_list.reverse()
-    print(input_list)
     myStack = Stack(len(input_list))
 
     for token in input_list:
         #Handles operators
         if token in ["+", "-", "*", "/", "**", ">>", "<<"]:
-            print(myStack.items)
             if myStack.size() >= 2:
                 firstOperand = myStack.pop()
                 secondOperand = myStack.pop()
