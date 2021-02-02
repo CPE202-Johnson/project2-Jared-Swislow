@@ -50,14 +50,14 @@ class test_expressions(unittest.TestCase):
     
     def test_prefix_to_postfix_error_1(self):
         try:
-            postfix_eval("blah")
+            prefix_to_postfix("blah")
             self.fail()
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Invalid token")
 
     def test_prefix_to_postfix_error_2(self):
         try:
-            postfix_eval("+ 4")
+            prefix_to_postfix("+ 4")
             self.fail()
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Insufficient operands")
