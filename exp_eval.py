@@ -36,7 +36,7 @@ def postfix_eval(input_str):
                 elif token == "*":
                     myStack.push(a * b)
                 elif token == "/":
-                    myStack.push(a / b)
+                    myStack.push(float(a) / float(b))
                 elif token == "**":
                     myStack.push(a ** b)
                 elif token == ">>":
