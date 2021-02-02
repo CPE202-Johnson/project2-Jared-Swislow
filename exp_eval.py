@@ -25,6 +25,8 @@ def postfix_eval(input_str):
                 elif token == "*":
                     myStack.push(a * b)
                 elif token == "/":
+                    if b == 0:
+                        raise ValueError("Division by Zero")
                     myStack.push(a / b)
                 elif token == "**":
                     myStack.push(a ** b)
@@ -91,4 +93,3 @@ def isIntOrFloat(token):
             return True
         except:
             return False
-

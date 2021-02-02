@@ -44,6 +44,12 @@ class test_expressions(unittest.TestCase):
         self.assertEqual(postfix_eval("10 1 >>"), 5)
         #Tests <<
         self.assertEqual(postfix_eval("4 3 <<"), 32)
+        #Test division by 0
+        try:
+            postfix_eval("5 3 3 - /")
+            self.fail()
+        except ValueError as e:
+            self.assertEqual(str(e), "Division by Zero")
     
     def test_prefix_to_postfix(self):
         self.assertEqual(prefix_to_postfix("* + 3 4 - 2 1"), "3 4 + 2 1 - *")
