@@ -47,6 +47,7 @@ class test_expressions(unittest.TestCase):
     
     def test_prefix_to_postfix(self):
         self.assertEqual(prefix_to_postfix("* + 3 4 - 2 1"), "3 4 + 2 1 - *")
+        self.assertEqual(prefix_to_postfix("* + 3.1 4.4 - 2.93 1"), "3.1 4.4 + 2.93 1 - *")
     
     def test_prefix_to_postfix_error_1(self):
         try:
