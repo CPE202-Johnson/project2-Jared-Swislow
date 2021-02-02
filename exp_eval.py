@@ -17,18 +17,7 @@ def postfix_eval(input_str):
             if myStack.size() >= 2:
                 b = myStack.pop()
                 a = myStack.pop()
-
-                #Casts the strings to an int or float, depending on what it is
-                try:
-                    b = int(b)
-                except:
-                    b = float(b)
                 
-                try:
-                    a = int(a)
-                except:
-                    a = float(a)
-
                 if token == "+":
                     myStack.push(a + b)
                 elif token == "-":
@@ -40,14 +29,18 @@ def postfix_eval(input_str):
                 elif token == "**":
                     myStack.push(a ** b)
                 elif token == ">>":
+                    a = int(a)
+                    b = int(b)
                     myStack.push(a >> b)
                 elif token == "<<":
+                    a = int(a)
+                    b = int(b)
                     myStack.push(a << b)
             else: #This will be called if the stack does not have enough operands to use the operator on
                 raise PostfixFormatException("Insufficient operands")
         #Handles adding a number to the stack
         elif isIntOrFloat(token):
-            myStack.push(token)
+            myStack.push(float(token))
         #Throws error for a wrong input
         else:
             raise PostfixFormatException("Invalid token")
@@ -98,3 +91,6 @@ def isIntOrFloat(token):
             return True
         except:
             return False
+
+
+print(postfix_eval("3 2 / 3 *"))
