@@ -48,11 +48,31 @@ def postfix_eval(input_str):
 #string -> string
 #Changes a prefix expression to a postfix expression.
 def prefix_to_postfix(input_str):
-    '''Converts a prefix expression to an equivalent postfix expression
+    input_list = str.split(input_str)
+    input_list.reverse()
+    print(input_list)
+    myStack = Stack(len(input_list))
+
+    for token in input_list:
+        #Handles operators
+        if token in ["+", "-", "*", "/", "**", ">>", "<<"]:
+            print(myStack.items)
+            if myStack.size() >= 2:
+                firstOperand = myStack.pop()
+                secondOperand = myStack.pop()
+                myStack.push(firstOperand + " " + secondOperand + " " + token)
+            #Throws an error if the stack does not have enough operands to combine with the operator
+            else:
+                raise PostfixFormatException("Insufficient operands")
+        #Handles operands
+        elif token.isnumeric():
+            myStack.push(token)
+        #Throws an error if a token is not an operator or a operand
+        else:
+            raise PostfixFormatException("Invalid token")
     
-    Input argument:  a string containing a prefix expression where tokens are 
-    space separated.  Tokens are either operators + - * / ** >> << parentheses ( ) or numbers
-    Returns a String containing a postfix expression(tokens are space separated)'''
-    pass
-
-
+    if myStack.size() == 1:
+        return myStack.pop()
+    #Throws an error if there aren't enough operators for the given operands
+    else:
+        raise PostfixFormatException("Too many operands")
