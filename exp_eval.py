@@ -15,8 +15,20 @@ def postfix_eval(input_str):
         #Handles using the operator on the top two values in the stack
         if token in ["+", "-", "*", "/", "**", ">>", "<<"]:
             if myStack.size() >= 2:
-                b = int(myStack.pop())
-                a = int(myStack.pop())
+                b = myStack.pop()
+                a = myStack.pop()
+
+                #Casts the strings to an int or float, depending on what it is
+                if b.isnumeric():
+                    b = int(b)
+                else:
+                    b = float(b)
+                
+                if a.isnumeric():
+                    a = int(a)
+                else:
+                    a = float(a)
+
                 if token == "+":
                     myStack.push(a + b)
                 elif token == "-":
@@ -34,14 +46,14 @@ def postfix_eval(input_str):
             else: #This will be called if the stack does not have enough operands to use the operator on
                 raise PostfixFormatException("Insufficient operands")
         #Handles adding a number to the stack
-        elif token.isnumeric():
+        elif isIntOrFloat(token):
             myStack.push(token)
         #Throws error for a wrong input
         else:
             raise PostfixFormatException("Invalid token")
 
     if myStack.size() == 1:
-        return int(myStack.pop())
+        return myStack.pop()
     else: #This will be called if there are not enough operators for the amount of operands
         raise PostfixFormatException("Too many operands")
 
