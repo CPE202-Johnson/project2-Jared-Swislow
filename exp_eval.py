@@ -25,7 +25,7 @@ def postfix_eval(input_str):
                 elif token == "*":
                     myStack.push(a * b)
                 elif token == "/":
-                    myStack.push(float(a) / float(b))
+                    myStack.push(a / b)
                 elif token == "**":
                     myStack.push(a ** b)
                 elif token == ">>":
@@ -92,5 +92,3 @@ def isIntOrFloat(token):
         except:
             return False
 
-
-print(postfix_eval("3 2 / 3 *"))
