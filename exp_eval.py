@@ -63,7 +63,7 @@ def prefix_to_postfix(input_str):
             else:
                 raise PostfixFormatException("Insufficient operands")
         #Handles operands
-        elif token.isnumeric():
+        elif isIntOrFloat(token):
             myStack.push(token)
         #Throws an error if a token is not an operator or a operand
         else:
@@ -74,3 +74,15 @@ def prefix_to_postfix(input_str):
     #Throws an error if there aren't enough operators for the given operands
     else:
         raise PostfixFormatException("Too many operands")
+
+#String -> boolean
+#Helper function that returns true if the token is a float or an int.
+def isIntOrFloat(token):
+    if token.isnumeric():
+        return True
+    else:
+        try:
+            token = float(token)
+            return True
+        except:
+            return False
