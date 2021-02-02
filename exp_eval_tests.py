@@ -33,7 +33,7 @@ class test_expressions(unittest.TestCase):
         #Tests +
         self.assertEqual(postfix_eval("3 5.4 +"), 8.4)
         #Tests -
-        self.assertEqual(postfix_eval("3 5 -"), -2)
+        self.assertEqual(postfix_eval("3.5 5 -"), -1.5)
         #Tests *
         self.assertEqual(postfix_eval("4 2 *"), 8)
         #Tests /
